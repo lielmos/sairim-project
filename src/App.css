@@ -1,0 +1,35 @@
+@font-face {
+  font-family: CooperativeDirtyBold;
+  src: url(/src/media/fonts/Cooperative-DirtyBold.otf);
+}
+
+@font-face {
+  font-family: Shluk;
+  src: url(/src/media/fonts/shluk-aaa-400.ttf);
+}
+
+@font-face {
+  font-family: CooperativeRegular;
+  src: url(/src/media/fonts/Cooperative-Regular.otf);
+}
+
+.App {
+  direction: rtl;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.background-image {
+  position: absolute;
+  height: 100%;
+  z-index: -1;
+}
