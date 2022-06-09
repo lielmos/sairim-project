@@ -6,9 +6,12 @@ import { DragDropContainer, DropTarget } from "react-drag-drop-container";
 
 export default function OpeningPage(props) {
   const dropped = (e) => {
-    e.containerElem.style.display = 'none';
-    // console.log("hi");
-    // e.stopPropagation();
+    e.stopPropagation();
+    e.containerElem.style.display = "none";
+  };
+
+  const landedOn = (e) => {
+    console.log(e);
   };
 
   return (
@@ -552,18 +555,20 @@ export default function OpeningPage(props) {
           </g>
         </g>
       </svg>
-      {/* <div className="draggable-answer-container">
-        <DraggableAnswer label="מצרים"></DraggableAnswer>
+      <div className="father-of-draggable-answers">
+        <DragDropContainer
+          targetKey="aa"
+          onDrop={landedOn}
+          dragData={props.label}
+        >
+          <div className="draggable-answer">מצרים</div>
+        </DragDropContainer>
       </div>
-      <div className="drop-answer-container">
-        <DropContainer></DropContainer>
-      </div> */}
-      <DragDropContainer targetKey="1" dragData={props.label}>
-        <div className="draggable-answer">מצרים</div>
-      </DragDropContainer>
-      <DropTarget targetKey="1" onHit={dropped}>
-        <div className="drop-container"></div>
-      </DropTarget>
+      <div className="father-of-drop-containers">
+        <DropTarget targetKey="aa" onHit={dropped}>
+          <div className="drop-container"></div>
+        </DropTarget>
+      </div>
     </div>
   );
 }

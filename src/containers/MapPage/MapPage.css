@@ -37,21 +37,11 @@
   stroke: #603813;
 }
 
-.draggable-answer-container {
+.father-of-draggable-answers {
   position: absolute;
-  display: flex;
-  min-width: 30vw;
-  width: fit-content;
-  margin-top: 75vh;
-  margin-right: 18vh;
-}
-
-.drop-answer-container {
-  position: absolute;
-  min-width: 30vw;
-  width: fit-content;
-  margin-top: 8vh;
-  margin-right: 7vh;
+  width: 100vw;
+  height: 20vh;
+  margin-top: 90vh;
 }
 
 .draggable-answer {
@@ -69,7 +59,15 @@
   display: inline-block;
 }
 
+.father-of-drop-containers {
+  position: absolute;
+  width: 100vw;
+  height: 80vh;
+  margin-top: -10vh;
+}
+
 .drop-container {
+  position: absolute;
   background-color: transparent;
   border-radius: 3.5vw;
   padding: 1.5vw 2.5vh;
@@ -79,7 +77,9 @@
   width: fit-content;
   height: fit-content;
   text-align: center;
-  border-color: white;
+  border-color: black;
   border-style: solid;
   border-width: 0.12em;
+  margin-right: 64%;
+  margin-top: 122%;
 }
