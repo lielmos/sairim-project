@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import "./MapPage.css";
 import data from "../../data.json";
 import { DragDropContainer, DropTarget } from "react-drag-drop-container";
+import AnswerButton from "../../components/AnswerButton/AnswerButton";
+import { useNavigate } from "react-router-dom";
 
-export default function OpeningPage(props) {
+export default function MapPage(props) {
+  let navigate = useNavigate();
   const [dropTarget, setDropTarget] = useState([0, 0, 0, 0, 0, 0]);
   const [isHit, setIsHit] = useState(false);
+  const [countAnswered, setCountedAnswered] = useState(0);
+
   const dropped = (e) => {
     setIsHit(true);
     e.stopPropagation();
@@ -13,7 +18,7 @@ export default function OpeningPage(props) {
     item[e.dragData.index.index] = 1;
     setDropTarget(item);
     e.containerElem.style.display = "none";
-    console.log(item);
+    setCountedAnswered(prev => prev+1);
   };
 
   const dragEnd = (e) => {
@@ -21,6 +26,12 @@ export default function OpeningPage(props) {
       setIsHit(false);
     }
   };
+
+  const MoveToNextPage = (event) => {
+    props.setCurrExpPage((prev) => prev + 1);
+    navigate("/ExplanationPage");
+    // console.log("hi");
+  }
 
   return (
     <div className="map-page">
@@ -563,20 +574,30 @@ export default function OpeningPage(props) {
           </g>
         </g>
       </svg>
-      <div className="father-of-draggable-answers">
-        {data[14].answersForMap1.map((answer, index) => {
-          return (
-            <DragDropContainer
-              targetKey={`country${index}`}
-              dragData={{ name: { answer }, index: { index } }}
-              key={index}
-              onDragEnd={dragEnd}
-            >
-              <div className="draggable-answer">{answer}</div>
-            </DragDropContainer>
-          );
-        })}
-      </div>
+
+      {countAnswered !== 6 ? 
+      (<div className="father-of-draggable-answers">
+      {data[14].answersForMap1.map((answer, index) => {
+        return (
+          <DragDropContainer
+            targetKey={`country${index}`}
+            dragData={{ name: { answer }, index: { index } }}
+            key={index}
+            onDragEnd={dragEnd}
+          >
+            <div className="draggable-answer">{answer}</div>
+          </DragDropContainer>
+        );
+      })}
+    </div>)
+      :
+      <AnswerButton
+        handleClick={MoveToNextPage}
+        className="map1-page-answer-button"
+        text={"לשאלה הבאה"}
+      ></AnswerButton>
+      }
+
       <div className="father-of-drop-containers">
         {data[14].answersForMap1.map((answer, index) => {
           return (
@@ -588,11 +609,6 @@ export default function OpeningPage(props) {
                <div className={`drop-containers map1-drop-num${index}`}>
                  {dropTarget[index] === 1 && <div className="map1-draged-answer">{answer}</div>}
                </div>
-              {/* {dropTarget[index] === 1 ? (
-                <div className={`map1-drop-num${index} draggable-answer`}>{answer}</div>
-              ) : (
-                <div className={`drop-containers map1-drop-num${index}`}></div>
-              )} */}
             </DropTarget>
           );
         })}
@@ -600,3 +616,24 @@ export default function OpeningPage(props) {
     </div>
   );
 }
+
+{/* <div className="father-of-drop-containers">
+        {data[14].answersForMap1.map((answer, index) => {
+          return (
+            <DropTarget
+              targetKey={`country${index}`}
+              key={index}
+              onHit={dropped}
+            >
+               <div className={`drop-containers map1-drop-num${index}`}>
+                 {dropTarget[index] === 1 && <div className="map1-draged-answer">{answer}</div>}
+               </div>
+              {dropTarget[index] === 1 ? (
+                <div className={`map1-drop-num${index} draggable-answer`}>{answer}</div>
+              ) : (
+                <div className={`drop-containers map1-drop-num${index}`}></div>
+              )}
+            </DropTarget>
+          );
+        })}
+      </div> */}

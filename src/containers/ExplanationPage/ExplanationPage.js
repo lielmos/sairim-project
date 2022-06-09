@@ -7,12 +7,14 @@ import data from "../../data.json";
 
 export default function ExplanationPage(props) {
   let navigate = useNavigate();
+  console.log(props.useCurrQuestion);
   // const [currExpPage, setCurrExpPage] = useState(9);
   useEffect(() => {
     if (
-      props.useCurrQuestion !== 5 &&
-      props.useCurrQuestion !== 6 &&
-      props.useCurrQuestion !== 7
+      // props.useCurrQuestion !== 5 &&
+      // props.useCurrQuestion !== 6 &&
+      // props.useCurrQuestion !== 7
+      props.useCurrQuestion <= 4 
     ) {
       props.setCurrExpPage(9);
     }
@@ -516,7 +518,7 @@ export default function ExplanationPage(props) {
       </p>
       <AnswerButton
         handleClick={MoveToNextPage}
-        className="explanation-page-answer-button-2"
+        className="explanation-page-answer-button"
         text={
           data[props.currExpPage].expPageId == 0
             ? "אז יאללה בואו נתחיל?"

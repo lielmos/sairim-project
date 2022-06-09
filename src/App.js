@@ -38,7 +38,16 @@ function App() {
               />
             }
           />
-          <Route exact path="/MapPage" element={<MapPage />} />
+          <Route
+            exact
+            path="/MapPage"
+            element={
+              <MapPage
+                currExpPage={currExpPage}
+                setCurrExpPage={setCurrExpPage}
+              />
+            }
+          />
         </Routes>
       </Router>
     </div>

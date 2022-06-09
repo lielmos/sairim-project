@@ -126,3 +126,10 @@
   margin-right: 7%;
   margin-top: 74%;
 }
+
+.map1-page-answer-button {
+  position: absolute;
+  margin-top: 72%;
+  margin-right: 5%;
+  z-index: 1;
+}
