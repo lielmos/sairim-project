@@ -6,7 +6,9 @@ import { DragDropContainer, DropTarget } from "react-drag-drop-container";
 
 export default function OpeningPage(props) {
   const dropped = (e) => {
-    e.containerElem.style.visibility = "hidden";
+    e.containerElem.style.display = 'none';
+    // console.log("hi");
+    // e.stopPropagation();
   };
 
   return (
