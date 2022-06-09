@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MapPage.css";
-// import DraggableAnswer from "../../components/DraggableAnswer/DraggableAnswer";
-// import DropContainer from "../../components/DropContainer/DropContainer";
+import data from "../../data.json";
 import { DragDropContainer, DropTarget } from "react-drag-drop-container";
 
 export default function OpeningPage(props) {
+  const [dropTarget, setDropTarget] = useState([0, 0, 0, 0, 0, 0]);
+  const [isHit, setIsHit] = useState(false);
   const dropped = (e) => {
+    setIsHit(true);
     e.stopPropagation();
+    let item = [...dropTarget];
+    item[e.dragData.index.index] = 1;
+    setDropTarget(item);
     e.containerElem.style.display = "none";
+    console.log(item);
   };
 
-  const landedOn = (e) => {
-    console.log(e);
+  const dragEnd = (e) => {
+    if (!isHit) {
+      setIsHit(false);
+    }
   };
 
   return (
@@ -556,18 +564,38 @@ export default function OpeningPage(props) {
         </g>
       </svg>
       <div className="father-of-draggable-answers">
-        <DragDropContainer
-          targetKey="aa"
-          onDrop={landedOn}
-          dragData={props.label}
-        >
-          <div className="draggable-answer">מצרים</div>
-        </DragDropContainer>
+        {data[14].answersForMap1.map((answer, index) => {
+          return (
+            <DragDropContainer
+              targetKey={`country${index}`}
+              dragData={{ name: { answer }, index: { index } }}
+              key={index}
+              onDragEnd={dragEnd}
+            >
+              <div className="draggable-answer">{answer}</div>
+            </DragDropContainer>
+          );
+        })}
       </div>
       <div className="father-of-drop-containers">
-        <DropTarget targetKey="aa" onHit={dropped}>
-          <div className="drop-container"></div>
-        </DropTarget>
+        {data[14].answersForMap1.map((answer, index) => {
+          return (
+            <DropTarget
+              targetKey={`country${index}`}
+              key={index}
+              onHit={dropped}
+            >
+               <div className={`drop-containers map1-drop-num${index}`}>
+                 {dropTarget[index] === 1 && <div className="map1-draged-answer">{answer}</div>}
+               </div>
+              {/* {dropTarget[index] === 1 ? (
+                <div className={`map1-drop-num${index} draggable-answer`}>{answer}</div>
+              ) : (
+                <div className={`drop-containers map1-drop-num${index}`}></div>
+              )} */}
+            </DropTarget>
+          );
+        })}
       </div>
     </div>
   );

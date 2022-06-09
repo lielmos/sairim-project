@@ -39,13 +39,21 @@
 
 .father-of-draggable-answers {
   position: absolute;
-  width: 100vw;
+  width: 65vw;
   height: 20vh;
-  margin-top: 90vh;
+  margin-top: 82vh;
+  margin-right: 24vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 1vh;
+  align-content: center;
+  column-gap: 1vh;
 }
 
 .draggable-answer {
   background-color: white;
+  border-color: black;
   border-radius: 3.5vw;
   padding: 1vw 2vh;
   min-height: 1vh;
@@ -55,23 +63,23 @@
   font-size: 1.3em;
   font-family: "CooperativeRegular";
   color: black;
-  border-style: none;
-  display: inline-block;
+  border-width: 0.2vh;
+  border-style: solid;
 }
 
 .father-of-drop-containers {
   position: absolute;
   width: 100vw;
   height: 80vh;
-  margin-top: -10vh;
+  margin-top: -12vh;
 }
 
-.drop-container {
+.drop-containers {
   position: absolute;
-  background-color: transparent;
+  background-color: white;
   border-radius: 3.5vw;
   padding: 1.5vw 2.5vh;
-  min-height: 1vh;
+  min-height: 2.5vh;  
   max-width: 50vw;
   min-width: 10vw;
   width: fit-content;
@@ -80,6 +88,41 @@
   border-color: black;
   border-style: solid;
   border-width: 0.12em;
+}
+
+.map1-draged-answer {
+  font-size: 1.3em;
+  font-family: "CooperativeRegular";
+  color: black;
+}
+
+.map1-drop-num0 {
+  position: absolute;
   margin-right: 64%;
   margin-top: 122%;
+}
+
+.map1-drop-num1 {
+  margin-right: 2%;
+  margin-top: 6%;
+}
+
+.map1-drop-num2 {
+  margin-right: 35%;
+  margin-top: 7%;
+}
+
+.map1-drop-num3 {
+  margin-right: 65%;
+  margin-top: 68%;
+}
+
+.map1-drop-num4 {
+  margin-right: 32%;
+  margin-top: 54%;
+}
+
+.map1-drop-num5 {
+  margin-right: 7%;
+  margin-top: 74%;
 }
